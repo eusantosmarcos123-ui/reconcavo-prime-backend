@@ -1,0 +1,49 @@
+{
+  "name": "reconcavo-prime-backend",
+  "version": "1.0.0",
+  "description": "Backend de Alta Performance para o Portal da Imobiliária Recôncavo Prime (Santo Antônio de Jesus - BA)",
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "test": "tsx scripts/test-endpoints.ts",
+    "db:push": "prisma db push",
+    "db:seed": "tsx prisma/seed.ts",
+    "stitch:integrate": "tsx scripts/stitch-bridge.ts"
+  },
+  "keywords": [
+    "reconcavo-prime",
+    "fastify",
+    "prisma",
+    "webxr",
+    "360-equirectangular",
+    "google-stitch",
+    "santo-antonio-de-jesus"
+  ],
+  "author": "Staff Backend Engineer & API Architect",
+  "license": "ISC",
+  "dependencies": {
+    "@fastify/cors": "^11.3.1",
+    "@fastify/jwt": "^10.2.5",
+    "@fastify/static": "^10.1.6",
+    "@fastify/swagger": "^9.9.2",
+    "@fastify/swagger-ui": "^6.1.2",
+    "@prisma/client": "^6.19.3",
+    "bcryptjs": "^3.0.3",
+    "dotenv": "^18.0.8",
+    "fastify": "^5.12.7",
+    "fastify-type-provider-zod": "^7.0.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/node": "^26.6.5",
+    "prisma": "^6.19.3",
+    "tsx": "^4.23.15",
+    "typescript": "^6.0.3"
+  },
+  "engines": {
+    "node": ">=22.23.4"
+  }
+}

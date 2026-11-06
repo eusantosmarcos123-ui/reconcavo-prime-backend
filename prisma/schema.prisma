@@ -1,0 +1,49 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Corretor {
+  id               String   @id @default(uuid())
+  nome             String
+  email            String   @unique
+  senhaHash        String
+  telefoneWhatsApp String
+  creci            String
+  ativo            Boolean  @default(true)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  imoveis Imovel[]
+
+  @@map("corretores")
+}
+
+model Imovel {
+  id                   String   @id @default(uuid())
+  titulo               String
+  descricao            String
+  preco                Float
+  areaMetragem         Float
+  quartos              Int
+  banheiros            Int
+  vagasGaragem         Int
+  cidade               String   @default("Santo Antônio de Jesus")
+  bairro               String
+  latitude             Float
+  longitude            Float
+  fotosComuns          String   @default("[]") // JSON array string
+  fotoPanoramica360Url String?
+  temTourVirtual       Boolean  @default(false)
+  destaqueAltoPadrao   Boolean  @default(false)
+  corretorId           String
+  corretor             Corretor @relation(fields: [corretorId], references: [id], onDelete: Cascade)
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  @@map("imoveis")
+}
